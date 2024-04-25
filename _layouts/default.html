@@ -46,10 +46,10 @@
     ></script>
   </head>
   <body>
-    {% include header.html %}
-    <main>
-      <article>{{ content }}</article>
+    {%- include header.html -%}
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">{{ content }}</div>
     </main>
-    {% include footer.html %}
+    {%- include footer.html -%}
   </body>
 </html>

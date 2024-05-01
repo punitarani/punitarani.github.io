@@ -28,10 +28,10 @@ permalink: hackathons
     {% for hackathon in site.hackathons %}
     <li>
       <h2><a href="{{ hackathon.url }}">{{ hackathon.title }}</a></h2>
-      <span class="post-meta">{{ hackathon.date | date: "%b %-d, %Y" }}</span>
-      <p><strong>{{ hackathon.hackathon }}</strong></p>
+      <p class="post-meta">{{ hackathon.date | date: "%b %-d, %Y" }}</p>
+      <p>{{ hackathon.hackathon }}</p>
       {% if hackathon.prize %}
-      <p>Prizes: {{ hackathon.prize }}</p>
+        <p><strong>Prizes: {{ hackathon.prize }}</strong></p>
       {% endif %}
       <p>{{ hackathon.summary }}</p>
     </li>

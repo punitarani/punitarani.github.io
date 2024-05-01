@@ -3,4 +3,59 @@ layout: default
 title: Hackathons
 ---
 
-<h1>Hackathons</h1>
+<style>
+  .hackathon-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .hackathon-list li {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  .hackathon-list li:last-child {
+    border-bottom: none;
+  }
+</style>
+
+<div class="hackathons">
+  <h1 class="page-heading">{{ page.title }}</h1>
+
+  <ul class="hackathon-list">
+    {% for hackathon in site.hackathons %}
+    <li>
+      <h2><a href="{{ hackathon.url }}">{{ hackathon.title }}</a></h2>
+      <p>{{ hackathon.summary }}</p>
+      <span class="post-meta">{{ hackathon.date | date: "%b %-d, %Y" }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% if paginator %}
+  <div class="pager">
+    <ul class="pagination">
+      {% if paginator.previous_page %}
+      <li>
+        <a
+          href="{{ paginator.previous_page_path | relative_url }}"
+          class="previous-page"
+          >Previous</a
+        >
+      </li>
+      {% endif %}
+      <li><div class="current-page">{{ paginator.page }}</div></li>
+      {% if paginator.next_page %}
+      <li>
+        <a
+          href="{{ paginator.next_page_path | relative_url }}"
+          class="next-page"
+          >Next</a
+        >
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
+</div>

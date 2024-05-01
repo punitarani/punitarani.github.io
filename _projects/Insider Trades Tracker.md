@@ -10,9 +10,9 @@ category: Quant
 
 [GitHub](https://github.com/punitarani/InsiderTradesTracker)
 
-**Objective**: Develop a real-time monitoring and analysis system for insider trading activities by tracking SEC Form 4 filings, enabling investors and interested parties to gain valuable insights into corporate executives' transactions involving their company's stock.
-**Takeaway**: Hands-on experience in web scraping, data parsing, dashboard development, and building practical finance applications.
-**Status**: Complete
+- **Objective**: Develop a real-time monitoring and analysis system for insider trading activities by tracking SEC Form 4 filings, enabling investors and interested parties to gain valuable insights into corporate executives' transactions involving their company's stock.
+- **Takeaway**: Hands-on experience in web scraping, data parsing, dashboard development, and building practical finance applications.
+- **Status**: Complete
 
 ## Description
 

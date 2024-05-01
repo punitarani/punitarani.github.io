@@ -1,5 +1,9 @@
 ---
+layout: default
 title: Cellular S&P 500
+permalink: cellular-sp500
+author: Punit Arani
+date: April 2023
 abstract: The Cellular S&P 500 Simulator is an experimental model that uses LSTM neural networks as weights for a cellular automata to simulate the stock market, providing a novel approach to visualize and explore the intricate relationships and dynamics within the S&P 500 index.
 ---
 

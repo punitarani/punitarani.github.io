@@ -1,5 +1,9 @@
 ---
+layout: default
 title: AgentML
+permalink: agentml
+author: Punit Arani
+date: December 2023
 abstract: AgentML is an autonomous LLM-agent system that can analyze datasets, write and execute code, train and evaluate machine learning models, and provide visual insights, enabling users from diverse backgrounds to efficiently build and deploy ML solutions without extensive coding expertise.
 ---
 

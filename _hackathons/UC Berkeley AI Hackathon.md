@@ -4,8 +4,9 @@ title: Prosper AI
 permalink: prosper-ai
 author: Punit Arani
 date: Jun 18, 2023
-abstract: Unlocking financial potential with AI precision, your future guided by a CFA qualified virtual advisor.
 category: Winner
+hackathon: Hack@CEWIT 2023
+abstract: Unlocking financial potential with AI precision, your future guided by a CFA qualified virtual advisor.
 ---
 
 [Devpost](https://devpost.com/software/prosper-ai)

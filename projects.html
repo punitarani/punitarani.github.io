@@ -4,4 +4,61 @@ title: Projects
 permalink: projects
 ---
 
-<h1>Projects</h1>
+<style>
+  .project-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .project-list li {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  .project-list li:last-child {
+    border-bottom: none;
+  }
+</style>
+
+<div class="projects">
+  <h1 class="page-heading">{{ page.title }}</h1>
+
+  <ul class="project-list">
+    {% for project in site.projects %}
+    <li>
+      <h2><a href="{{ project.url }}">{{ project.title }}</a></h2>
+      <span class="post-meta"
+        >{{ project.date | date: "%b %-d, %Y" }} - {{ project.author }}</span
+      >
+      <p>{{ project.abstract }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% if paginator %}
+  <div class="pager">
+    <ul class="pagination">
+      {% if paginator.previous_page %}
+      <li>
+        <a
+          href="{{ paginator.previous_page_path | relative_url }}"
+          class="previous-page"
+          >Previous</a
+        >
+      </li>
+      {% endif %}
+      <li><div class="current-page">{{ paginator.page }}</div></li>
+      {% if paginator.next_page %}
+      <li>
+        <a
+          href="{{ paginator.next_page_path | relative_url }}"
+          class="next-page"
+          >Next</a
+        >
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
+</div>

@@ -28,10 +28,8 @@ permalink: projects
     {% for project in site.projects %}
     <li>
       <h2><a href="{{ project.url }}">{{ project.title }}</a></h2>
-      <span class="post-meta"
-        >{{ project.date | date: "%b %-d, %Y" }} - {{ project.author }}</span
-      >
-      <p>{{ project.abstract }}</p>
+      <span class="post-meta">{{ project.date | date: "%b %-d, %Y" }}</span>
+      <p>{{ project.summary }}</p>
     </li>
     {% endfor %}
   </ul>

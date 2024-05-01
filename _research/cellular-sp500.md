@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Cellular S&P 500
 permalink: cellular-sp500
 author: Punit Arani

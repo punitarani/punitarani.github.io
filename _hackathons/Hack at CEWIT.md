@@ -4,7 +4,7 @@ title: WasteNot
 permalink: wastenot
 author: Punit Arani
 date: Mar 5, 2023
-abstract: Combat food waste while supporting those in need: easily donate excess food, reduce waste, and give back to your community.If you're on the go, our service makes it easy to collect and deliver food.
+abstract: Combat food waste while supporting those in need. Sasily donate excess food, reduce waste, and give back to your community.If you're on the go, our service makes it easy to collect and deliver food.
 category: Winner
 ---
 

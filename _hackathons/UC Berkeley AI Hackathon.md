@@ -5,7 +5,7 @@ permalink: prosper-ai
 author: Punit Arani
 date: Jun 18, 2023
 category: Winner
-hackathon: Hack@CEWIT 2023
+hackathon: UC Berkeley AI Hackathon
 summary: Unlocking financial potential with AI precision, your future guided by a CFA qualified virtual advisor.
 ---
 

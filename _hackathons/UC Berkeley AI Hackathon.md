@@ -6,6 +6,7 @@ author: Punit Arani
 date: Jun 18, 2023
 category: Winner
 hackathon: UC Berkeley AI Hackathon
+prize: Grand Prize, Best Knowledge Intensive LLM App
 summary: Unlocking financial potential with AI precision, your future guided by a CFA qualified virtual advisor.
 ---
 

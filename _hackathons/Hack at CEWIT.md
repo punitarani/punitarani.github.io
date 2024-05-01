@@ -6,6 +6,7 @@ author: Punit Arani
 date: Mar 5, 2023
 category: Winner
 hackathon: Hack@CEWIT 2023
+prize: AI Mastermind, Climate Action Hero, HealthTech Hero, Hacking Hero
 summary: Combat food waste while supporting those in need. Sasily donate excess food, reduce waste, and give back to your community.If you're on the go, our service makes it easy to collect and deliver food.
 ---
 
@@ -20,7 +21,7 @@ Uniting people who have food to donate, people who are in need of food, and peop
 
 - **AI Mastermind**
 - **Climate Action Hero**
-- **AI Mastermind**
+- **HealthTech Hero**
 - **Hacking Hero**
 
 ## Inspiration

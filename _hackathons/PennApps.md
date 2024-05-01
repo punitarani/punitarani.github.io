@@ -6,11 +6,12 @@ author: Punit Arani
 date: Sep 10, 2023
 category: Winner
 hackathon: PennApps XXIV
+prize: Best Financial Hack
 summary: Streamline insights, perform statistical tests, and make data-driven decisions faster than ever using natural language.
 ---
 
 [Devpost](https://devpost.com/software/analyzeai-4aq2gb) |
-[GitHub](https://github.com/punitarani/pennapps) |
+[GitHub](https://github.com/punitarani/pennapps)
 
 Streamline insights, perform statistical tests, and make data-driven decisions faster than ever using natural language.
 

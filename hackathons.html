@@ -22,14 +22,17 @@ permalink: hackathons
 </style>
 
 <div class="hackathons">
-  <h1 class="page-heading">{{ page.title }}</h1>
+  <h1 class="page-heading"><strong>{{ page.title }}</strong></h1>
 
   <ul class="hackathon-list">
     {% for hackathon in site.hackathons %}
     <li>
       <h2><a href="{{ hackathon.url }}">{{ hackathon.title }}</a></h2>
       <span class="post-meta">{{ hackathon.date | date: "%b %-d, %Y" }}</span>
-      <p>{{ hackathon.hackathon }}</p>
+      <p><strong>{{ hackathon.hackathon }}</strong></p>
+      {% if hackathon.prize %}
+      <p>Prizes: {{ hackathon.prize }}</p>
+      {% endif %}
       <p>{{ hackathon.summary }}</p>
     </li>
     {% endfor %}

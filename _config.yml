@@ -6,3 +6,11 @@ github_username:  punitarani
 linkedin_username: punitarani
 
 theme: minima
+
+collections:
+  hackathons:
+    output: true
+  projects:
+    output: true
+  research:
+    output: true

@@ -7,7 +7,7 @@ date: Mar 5, 2023
 category: Winner
 hackathon: Hack@CEWIT 2023
 prize: AI Mastermind, Climate Action Hero, HealthTech Hero, Hacking Hero
-summary: Combat food waste while supporting those in need. Sasily donate excess food, reduce waste, and give back to your community.If you're on the go, our service makes it easy to collect and deliver food.
+summary: Combat food waste while supporting those in need. Easily donate excess food, reduce waste, and give back to your community.If you're on the go, our service makes it easy to collect and deliver food.
 ---
 
 [Devpost](https://devpost.com/software/wastenot-tm16vk) |

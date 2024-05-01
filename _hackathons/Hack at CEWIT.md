@@ -8,7 +8,7 @@ abstract: Combat food waste while supporting those in need: easily donate excess
 category: Winner
 ---
 
-[DevPost](https://devpost.com/software/wastenot-tm16vk) |
+[Devpost](https://devpost.com/software/wastenot-tm16vk) |
 [GitHub](https://github.com/punitarani/wastenot)
 
 Waste not, want not. Reducing food waste one meal at a time.

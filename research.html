@@ -3,6 +3,23 @@ layout: default
 title: Research
 ---
 
+<style>
+  .research-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .research-list li {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  .research-list li:last-child {
+    border-bottom: none;
+  }
+</style>
+
 <div class="research">
   <h1 class="page-heading">{{ page.title }}</h1>
 
@@ -10,8 +27,8 @@ title: Research
     {% for project in site.research %}
     <li>
       <h2><a href="{{ project.url }}">{{ project.title }}</a></h2>
-      <p>{{ project.abstract }}</p>
       <span class="post-meta">{{ project.date | date: "%b %-d, %Y" }}</span>
+      <p>{{ project.abstract }}</p>
     </li>
     {% endfor %}
   </ul>

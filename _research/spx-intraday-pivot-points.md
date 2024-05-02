@@ -12,8 +12,8 @@ With the advent of the internet and democratization of the stock market making i
 
 This democratization of the stock market has also led to different patterns in market behavior over the last decade. There is an increasing number of brokerages that offer pre-market and after-hours trading privileges to retail traders. This paired with the rising popularity of quantitative hedge funds trading milliseconds after the news is made public has resulted in most of the major market moves occurring during the pre-market and after-hours. This can be seen in figure 1 highlighting the SPX’s total and intraday returns displaying a clear deviation in returns after 2016. The intraday returns plot is the cumulative returns of SPX only during the normal trading hours. The plot includes 32 years of historical data from 1990 to 2022 and we can notice a strict correlation between SPX’s total and intraday returns for most of the time from 1990 to 2016. The intraday returns trail that of the overall index during this period revealing that most of the returns are made during market hours.
 
-> Figure 1 SPX and Intraday Returns with VIX and ADR
 > ![SPX and Intraday Returns with VIX and ADR](./spx-intraday-pivot-points/1-spx-and-intraday-returns-with-vix-and-adr.png)
+> Figure 1: SPX and Intraday Returns with VIX and ADR
 
 The decreased intraday returns beginning in 2016 along with the fact that the average daily range has remained fairly similar to the period before signifies that there is still the same amount of intraday market range, that is between the high and low of the trading day, but the main difference being the reduced difference between the market close to open. This opens up an opportunity to find new ways to day trade and generate alpha that is appropriate for the current market behavior. This paper analyzes both day and short-term trades on SPX using pivot points to identify a potential edge to generate profits.
 
@@ -25,24 +25,26 @@ Since there is no one way to identify levels of support and resistance, quants h
 
 Pivot points originated on the trading floor and were used extensively by floor traders from the 1980s and the use has expanded to also include professional and retail traders in the modern-day. Pivot points are also not designed to act as strict levels of support and resistance, instead, it provides key levels acting against the momentum and trigger mean reversion.
 
-| Symbol | Name               |
-| ------ | ------------------ |
-| $O$    | Previous Day Open  |
-| $H$    | Previous Day High  |
-| $L$    | Previous Day Low   |
-| $C$    | Previous Day Close |
-
-| Symbol | Name         | Formula           |
-| ------ | ------------ | ----------------- |
-| $R3$   | Resistance 3 | $H + 2(P - L)$    |
-| $R2$   | Resistance 2 | $P - L + H$       |
-| $R1$   | Resistance 1 | $2P - L$          |
-| $P$    | Pivot        | $(H + L + C) / 3$ |
-| $S1$   | Support 1    | $2P - H$          |
-| $S2$   | Support 2    | $P + L - H$       |
-| $S3$   | Support 3    | $L + 2(H - P)$    |
+> | Symbol | Name               | Formula           |
+> | ------ | ------------------ | ----------------- |
+> | $O$    | Previous Day Open  |                   |
+> | $H$    | Previous Day High  |                   |
+> | $L$    | Previous Day Low   |                   |
+> | $C$    | Previous Day Close |                   |
+> | $R3$   | Resistance 3       | $H + 2(P - L)$    |
+> | $R2$   | Resistance 2       | $P - L + H$       |
+> | $R1$   | Resistance 1       | $2P - L$          |
+> | $P$    | Pivot              | $(H + L + C) / 3$ |
+> | $S1$   | Support 1          | $2P - H$          |
+> | $S2$   | Support 2          | $P + L - H$       |
+> | $S3$   | Support 3          | $L + 2(H - P)$    |
+>
+> Table 1: Pivot Points Formulas
 
 Pivot points originated on the trading floor and were used extensively by floor traders from the 1980s and the use has expanded to also include professional and retail traders in the modern-day. Pivot points are also not designed to act as strict levels of support and resistance, instead, it provides key levels acting against the momentum and trigger mean reversion.
+
+> ![2 Pivot Points ](https://www.fidelity.com/bin-public/600_Fidelity_Com_English/images/migration/PivotPointSupportResist602x345.png)
+> Figure 2: Pivot Points [1] (Source: Fidelity)
 
 ## Previous Work
 
@@ -58,16 +60,18 @@ This Paper also uses a new implementation of pivot points by categorizing each r
 
 This paper aims to test multiple ways methodically and thoroughly to identify strategies that are capable of generating alpha. Due to the lack of publicly available historical intraday data paired with the complexity of developing backtests for the scope of this paper, the tests will use simple entry and exit points for trades based on daily data like open, high, low, and close prices. This should, however, not impact the credibility of the backtests and sufficient data from each analysis will be provided to justify the findings and future reference. The paper will be divided into the following two main scopes:
 
-| Zone | Lower Bound | Upper Bound |
-| ---- | ----------- | ----------- |
-| 1    | ≥ R3        |             |
-| 2    | ≥ R2        | < R3        |
-| 3    | ≥ R1        | < R2        |
-| 4    | ≥ PP        | < R1        |
-| 5    | ≥ S1        | < PP        |
-| 6    | ≥ S2        | < S1        |
-| 7    | ≥ S3        | < S2        |
-| 8    |             | < S3        |
+> | Zone | Lower Bound | Upper Bound |
+> | ---- | ----------- | ----------- |
+> | 1    | ≥ R3        |             |
+> | 2    | ≥ R2        | < R3        |
+> | 3    | ≥ R1        | < R2        |
+> | 4    | ≥ PP        | < R1        |
+> | 5    | ≥ S1        | < PP        |
+> | 6    | ≥ S2        | < S1        |
+> | 7    | ≥ S3        | < S2        |
+> | 8    |             | < S3        |
+>
+> Table 2: Pivot Points Zones
 
 1. Simple Patterns with Pivot Points and Zones.
    i. Provide detailed SPX, Pivot Points and Zones statistics that will be used in the backtests along with a point of future reference for further research into this topic.

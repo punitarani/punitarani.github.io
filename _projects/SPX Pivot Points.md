@@ -222,16 +222,16 @@ There will be two benchmarks that will be used to evaluate the performance of th
 | Statistic | Value                |
 | --------- | -------------------- |
 | Equation  | $y = 1.650x + 0.026$ |
-| Mean      | $0.039%$             |
-| Std Dev   | $1.141%$             |
+| Mean      | $0.039\%$            |
+| Std Dev   | $1.141\%$            |
 | $R^2$     | $0.148$              |
-| Median    | $0.059%$             |
+| Median    | $0.059\%$            |
 | Skew      | $-0.187$             |
 
-| Returns          | Total     | Annualized |
-| ---------------- | --------- | ---------- |
-| SPX Returns      | $1282.6%$ | $12.56%$   |
-| Intraday Returns | $654.5%$  | $9.53%$    |
+| Returns          | Total      | Annualized |
+| ---------------- | ---------- | ---------- |
+| SPX Returns      | $1282.6\%$ | $12.56\%$  |
+| Intraday Returns | $654.5\%$  | $9.53\%$   |
 
 ### Single Zone Strategy
 
@@ -239,17 +239,17 @@ This strategy buys at market price at open and sells at market price at close fo
 
 #### 1922 to 2022
 
-| Returns    | 1        | 2        | 3        | 4         | 5        | 6         | 7         | 8        |
-| ---------- | -------- | -------- | -------- | --------- | -------- | --------- | --------- | -------- |
-| Total      | $-1.55%$ | $13.76%$ | $68.34%$ | $242.70%$ | $89.07%$ | $-19.33%$ | $-20.90%$ | $-3.09%$ |
-| Annualized | $-0.07%$ | $0.58%$  | $2.37%$  | $5.70%$   | $2.91%$  | $-0.96%$  | $-1.05%$  | $-0.14%$ |
+| Returns    | 1         | 2         | 3         | 4          | 5         | 6          | 7          | 8         |
+| ---------- | --------- | --------- | --------- | ---------- | --------- | ---------- | ---------- | --------- |
+| Total      | $-1.55\%$ | $13.76\%$ | $68.34\%$ | $242.70\%$ | $89.07\%$ | $-19.33\%$ | $-20.90\%$ | $-3.09\%$ |
+| Annualized | $-0.07\%$ | $0.58\%$  | $2.37\%$  | $5.70\%$   | $2.91\%$  | $-0.96\%$  | $-1.05\%$  | $-0.14\%$ |
 
 #### 2016 to 2022
 
-| Returns    | 1        | 2        | 3        | 4        | 5         | 6        | 7         | 8        |
-| ---------- | -------- | -------- | -------- | -------- | --------- | -------- | --------- | -------- |
-| Total      | $-1.55%$ | $15.85%$ | $44.82%$ | $35.87%$ | $-14.07%$ | $-9.32%$ | $-22.92%$ | $-3.09%$ |
-| Annualized | $-0.36%$ | $3.47%$  | $8.97%$  | $7.37%$  | $-3.46%$  | $-2.24%$ | $-5.86%$  | $-0.73%$ |
+| Returns    | 1         | 2         | 3         | 4         | 5          | 6         | 7          | 8         |
+| ---------- | --------- | --------- | --------- | --------- | ---------- | --------- | ---------- | --------- |
+| Total      | $-1.55\%$ | $15.85\%$ | $44.82\%$ | $35.87\%$ | $-14.07\%$ | $-9.32\%$ | $-22.92\%$ | $-3.09\%$ |
+| Annualized | $-0.36\%$ | $3.47\%$  | $8.97\%$  | $7.37\%$  | $-3.46\%$  | $-2.24\%$ | $-5.86\%$  | $-0.73\%$ |
 
 ### Combined Zones Strategy
 
@@ -257,11 +257,11 @@ The main principle behind this strategy is to go long if the open is above the P
 
 #### 1922 to 2022
 
-This strategy produced a total return of $245.2%$, equivalent to $5.74%$ annualized over 30 years.
+This strategy produced a total return of $245.2\%$, equivalent to $5.74\%$ annualized over 30 years.
 
 #### 2016 to 2022
 
-This strategy produced a total return of $263.25%$, equivalent to $34.87%$ annualized over 6 years.
+This strategy produced a total return of $263.25\%$, equivalent to $34.87\%$ annualized over 6 years.
 
 ## Conclusion
 

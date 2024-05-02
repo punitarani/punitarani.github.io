@@ -4,7 +4,7 @@ title: Statistical Analysis of Pivot Points Strategies for Intraday SPX Trading 
 permalink: spx-intraday-pivot-points
 author: Punit Arani
 date: Apr 17, 2022
-summary: Analyzes the use of pivot points for improving intraday SPX trading strategies amid shifting market dynamics post-2016.
+abstract: Analyzes the use of pivot points for improving intraday SPX trading strategies amid shifting market dynamics post-2016.
 category: Quant
 ---
 

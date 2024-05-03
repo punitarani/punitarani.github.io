@@ -8,10 +8,9 @@ abstract: AgentML is an autonomous LLM-agent system that can analyze datasets, w
 category: Demo
 ---
 
-**AgentML is a groundbreaking LLM Agent tool designed to revolutionize the machine learning (ML) landscape.**
+Supervised by [Dr. Huan Liu](https://www.public.asu.edu/~huanliu/) and [Amrita Bhattacharjee](https://amritabh.github.io/)
 
-Offering simplicity and power, it's suited for a diverse audience, from students to ML professionals and non-coders.
-AgentML streamlines ML processes for all types of datasets, embodying innovation in artificial intelligence.
+**AgentML is an autonomous LLM-agent system that can analyze datasets, write and execute code, train and evaluate machine learning models, and provide visual insights, enabling users from diverse backgrounds to efficiently build and deploy ML solutions without extensive coding expertise.**
 
 ## Demo
 

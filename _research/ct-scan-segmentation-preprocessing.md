@@ -616,3 +616,74 @@ The selection of these optimal parameters for each stage of the pipeline was bas
 ![Pipeline Demo](../assets/ct-scan-segmentation-preprocessing/317947_enhanced.jpg)
 
 The combination of Gaussian denoising, CLAHE normalization, wavelet denoising, and Sobel edge detection, along with the overlay of the results from the left and right tracks, creates a comprehensive preprocessing pipeline that addresses the specific challenges associated with CT scan segmentation. This pipeline design enhances the overall quality of the input images, reduces noise, improves contrast, and highlights relevant edge information, ultimately contributing to improved accuracy and reliability in the segmentation of popliteal artery aneurysms and related structures.
+
+## Results
+
+### Original Image Segmentation (Default)
+
+The default segmentation approach, without any preprocessing, serves as the baseline for comparison. While computationally efficient, the resulting masks lack precision and well-defined edges. The segmentation borders do not align accurately with the features present in the CT scan, indicating the need for further enhancement.
+
+```python
+SAM = sam_model_registry["vit_h"](checkpoint="sam_vit_h_4b8939.pth")
+mask_generator = SamAutomaticMaskGenerator(SAM)
+masks = mask_generator.generate(IMAGE)
+```
+
+`mask_generator` is an instance of the `SamAutomaticMaskGenerator` class with default configurations.
+It represents a straightforward approach to image segmentation, balancing accuracy and computational efficiency for general-purpose tasks.
+
+![Original Image Segmentation - 317947](../assets/ct-scan-segmentation-preprocessing/segmentation/317947_segmentation.jpg)
+
+### Original Image Segmentation (Enhanced)
+
+The enhanced segmentation configuration, while prioritizing accuracy and robustness, comes at the cost of increased computational complexity. Compared to the default approach, this method takes approximately four times longer to generate the masks. However, the segmentation results demonstrate a noticeable improvement, with the masks more closely aligning with the CT scan features and exhibiting better-defined borders.
+
+```python
+enhanced_mask_generator = SamAutomaticMaskGenerator(
+    model=SAM,
+    points_per_side=32,
+    pred_iou_thresh=0.86,
+    stability_score_thresh=0.92,
+    crop_n_layers=1,
+    crop_n_points_downscale_factor=2,
+    min_mask_region_area=100,
+)
+```
+
+`mask_generator_2` is an instance of the `SamAutomaticMaskGenerator` class, configured to prioritize accuracy and robustness in image segmentation tasks. It employs additional techniques and tighter thresholds to enhance the quality of the generated masks, making it suitable for applications where precise segmentation results are crucial, even at the cost of increased computational complexity.
+
+The key aspects of `mask_generator_2` that contribute to its higher accuracy and post-processing capabilities include:
+
+1. **Cropping Layers**: By setting `crop_n_layers=1`, the mask prediction process is executed on additional crops of the input image. This multi-scale approach helps capture details at different resolutions and scales, potentially improving the overall segmentation accuracy.
+
+2. **Downscaled Point Sampling**: With `crop_n_points_downscale_factor=2`, the number of points sampled for mask prediction in subsequent crop layers is reduced by a factor of 2. This downscaling strategy optimizes computational resources while still benefiting from the multi-scale analysis.
+
+3. **Mask Quality Filtering**: The `pred_iou_thresh` is set to a lower value of 0.86, allowing the generation of masks with slightly lower intersection-over-union (IoU) scores. This relaxed threshold can increase the recall rate, potentially capturing more relevant regions, albeit at the risk of introducing false positives.
+
+4. **Stability Score Filtering**: Similarly, the `stability_score_thresh` is set to 0.92, a lower value compared to the default. This adjustment allows for the inclusion of masks that may be less stable under changes in binarization thresholds. While this could improve recall, it may also reduce precision.
+
+5. **Post-Processing**: By setting `min_mask_region_area=100`, `mask_generator_2` applies post-processing to remove disconnected regions and holes in the generated masks that have an area smaller than 100 pixels. This step helps clean up the masks, potentially enhancing their quality and usability.
+
+These configurations in `mask_generator_2` are tailored for applications that prioritize maximizing the accuracy and completeness of the segmentation results. However, it's important to note that the increased complexity introduced by these techniques might result in longer processing times and higher computational resource requirements compared to the default configuration.
+
+![Enhanced Image Segmentation - 317947](../assets/ct-scan-segmentation-preprocessing/segmentation/317947_segmentation_2.jpg)
+
+### Enhanced Image Segmentation (Default)
+
+The proposed preprocessing pipeline, combining Gaussian denoising, CLAHE normalization, wavelet denoising, and Sobel edge detection, yields the most promising segmentation results. Even when using the default segmentation approach, the preprocessed image exhibits segmentation masks that closely match the CT scan features, with well-defined borders and precise delineation of the structures of interest.
+
+Notably, the preprocessing pipeline takes only 10 seconds to execute on a CPU, making it computationally efficient compared to the enhanced segmentation configuration. Additionally, the segmentation quality achieved with the preprocessed image is on par with, if not better than, the enhanced segmentation approach.
+
+![Enhanced Image Segmentation - 317947](../assets/ct-scan-segmentation-preprocessing/segmentation/317947_enhanced_segmentation.jpg)
+
+## Conclusion and Future Work
+
+This research has clearly demonstrated the necessity and benefits of incorporating preprocessing techniques to improve the accuracy and reliability of CT scan segmentation for popliteal artery aneurysm (PAA) diagnosis and management. The proposed preprocessing pipeline, combining denoising, normalization, and edge detection methods, has proven effective in enhancing image quality and feature extraction, leading to significantly improved segmentation results.
+
+While the enhanced segmentation configuration showed promising improvements compared to the default approach, it came at the cost of increased computational complexity. In contrast, the preprocessing pipeline achieved comparable or even better segmentation quality while remaining computationally efficient, executing in just 10 seconds on a CPU.
+
+These findings highlight the importance of preprocessing as a critical step in the PAA segmentation pipeline, and underscore the potential for further advancements in this field. Future work will focus on a comprehensive evaluation of the specific improvements in segmentation accuracy and robustness achieved by the preprocessing techniques, using quantitative metrics such as the Dice similarity coefficient, Hausdorff distance, and sensitivity/specificity analysis.
+
+Additionally, exploring advanced segmentation algorithms, such as U-Net, Mask R-CNN, or DeepLab, in combination with the proposed preprocessing pipeline, may provide further insights and opportunities for enhancing the accuracy and efficiency of PAA segmentation in knee CT scans.
+
+While this research represents a significant step forward, it is important to note that this is an ongoing effort, and further refinements to the preprocessing pipeline and segmentation algorithms will be pursued to achieve even more accurate and reliable PAA segmentation results, ultimately contributing to improved patient outcomes and more effective diagnosis and treatment planning.

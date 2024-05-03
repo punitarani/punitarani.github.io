@@ -578,3 +578,41 @@ Varying Sigma:
 ![LoG Edge Detection - Varying Sigma - 317947](../assets/ct-scan-segmentation-preprocessing/edge_detection/317947_log_sigma.gif)
 
 Optimal Sigma: $3.0$.
+
+## Pipeline
+
+The preprocessing pipeline for CT scan segmentation is a critical step in enhancing the quality of input images and extracting relevant features to improve the accuracy and robustness of subsequent segmentation algorithms. The proposed pipeline addresses common challenges such as noise, intensity variations, and edge preservation, ensuring that the input data is optimally prepared for the segmentation process.
+
+The pipeline consists of four main stages: Gaussian denoising, CLAHE normalization, wavelet denoising, and Sobel edge detection. Each stage plays a crucial role in improving the image quality and highlighting the features of interest, ultimately contributing to more accurate and reliable segmentation results.
+
+The Gaussian denoising stage is applied first to reduce noise and artifacts present in the CT scans, which can adversely affect the segmentation process. Following the Gaussian denoising, the pipeline splits into two parallel tracks. On the left track, CLAHE normalization is applied to enhance the local contrast of the image, followed by wavelet denoising to further reduce noise while preserving important image details. On the right track, Sobel edge detection is employed to identify and highlight the boundaries of the structures of interest, such as the popliteal artery aneurysm and surrounding vascular structures.
+
+The final output of the pipeline is obtained by overlaying the results from the left and right tracks with an alpha and beta value of 0.5, ensuring an even contribution from both the denoised, normalized image and the edge-enhanced image. This combination of techniques aims to provide an optimal input for the subsequent segmentation algorithms, leading to improved accuracy and reliability in the identification and delineation of popliteal artery aneurysms and related structures.
+
+### Pipeline Design
+
+The design of the preprocessing pipeline involves carefully selecting the optimal parameters for each stage to maximize their effectiveness in enhancing the image quality and extracting relevant features.
+
+![Preprocessing Pipeline](../assets/ct-scan-segmentation-preprocessing/pipeline.png)
+
+For the Gaussian denoising stage, a kernel size of $5 \times 5$ and a standard deviation ($\sigma$) of $1.5$ were found to be optimal. These parameters effectively reduce noise while preserving important image details, striking a balance between smoothing and maintaining the structural integrity of the CT scans.
+
+In the CLAHE normalization stage, the optimal parameters include a clip limit of $0.01$, a kernel size of $8 \times 8$, and a number of bins of $256$. These settings ensure that the local contrast of the image is enhanced without introducing artifacts or over-amplifying noise. The clip limit prevents excessive contrast enhancement, while the kernel size and number of bins control the granularity of the histogram equalization process.
+
+The wavelet denoising stage employs the "BayesShrink" method with a "soft" thresholding mode and rescale_sigma set to True. These parameters enable effective noise reduction while preserving important image details. The "BayesShrink" method adaptively determines the optimal threshold for each wavelet subband, ensuring a balance between noise removal and signal preservation.
+
+For the Sobel edge detection stage, an optimal kernel size of $3$ was determined. This kernel size allows for accurate detection of edges while minimizing the impact of noise and avoiding excessive smoothing of the edge information.
+
+The selection of these optimal parameters for each stage of the pipeline was based on extensive experimentation and evaluation of the results. By carefully tuning these parameters, the pipeline aims to maximize the benefits of each technique and provide the best possible input for the subsequent segmentation algorithms.
+
+### Pipeline Demo
+
+#### Original Image
+
+![Pipeline Demo](../assets/ct-scan-segmentation-preprocessing/317947.jpg)
+
+#### Preprocessed Image
+
+![Pipeline Demo](../assets/ct-scan-segmentation-preprocessing/317947_enhanced.jpg)
+
+The combination of Gaussian denoising, CLAHE normalization, wavelet denoising, and Sobel edge detection, along with the overlay of the results from the left and right tracks, creates a comprehensive preprocessing pipeline that addresses the specific challenges associated with CT scan segmentation. This pipeline design enhances the overall quality of the input images, reduces noise, improves contrast, and highlights relevant edge information, ultimately contributing to improved accuracy and reliability in the segmentation of popliteal artery aneurysms and related structures.

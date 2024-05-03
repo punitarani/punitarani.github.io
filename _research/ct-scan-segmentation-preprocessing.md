@@ -405,3 +405,176 @@ Varying Number of Bins with $0.01$ Clip Limit and $8 \times 8$ Kernel Size:
 ![CLAHE Normalization - Varying Number of Bins - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_clahe_nbins.gif)
 
 Optimal Parameters: Clip Limit $0.01$, Kernel Size $8 \times 8$, and Number of Bins $256$.
+
+### Edge Detection
+
+This study investigates the effectiveness of four edge detection methods in enhancing the segmentation accuracy of knee CT scans for popliteal artery aneurysm (PAA) diagnosis and management. The primary objective is to identify the boundaries of the aneurysm and surrounding vascular structures, providing valuable information for subsequent segmentation algorithms. The edge detection methods explored in this research include gradient-based techniques, which utilize first-order derivatives to detect changes in image intensity, and Laplacian-based approaches, which employ second-order derivatives to identify regions of rapid intensity change.
+
+The performance of these edge detection methods is evaluated in conjunction with other pre-processing techniques, such as denoising and normalization, to assess their combined impact on PAA segmentation accuracy. The study aims to determine the optimal combination of pre-processing techniques that yield the highest segmentation accuracy, as measured by metrics such as the Dice similarity coefficient and Hausdorff distance.
+
+The results demonstrate the importance of edge detection as a pre-processing step in the PAA segmentation pipeline, with the incorporation of edge information obtained from the selected methods significantly improving the accuracy and robustness of PAA segmentation in knee CT scans. Furthermore, the study highlights the potential of these edge detection techniques to address the limitations posed by the complex anatomical structures of the knee joint and surrounding vasculature.
+
+#### Sobel Edge Detection
+
+The Sobel edge detection method is a gradient-based technique that employs a pair of 3x3 convolution kernels to approximate the horizontal and vertical derivatives of an image. It is a computationally efficient and widely used method for edge detection in various image processing applications, including medical image analysis.
+
+The Sobel operator consists of two kernels, $G_x$ and $G_y$, which are convolved with the input image $I$ to calculate the gradient approximations in the horizontal and vertical directions, respectively:
+
+$$
+G_x = \begin{bmatrix}
+-1 & 0 & +1 \\
+-2 & 0 & +2 \\
+-1 & 0 & +1
+\end{bmatrix} * I
+$$
+
+$$
+G_y = \begin{bmatrix}
+-1 & -2 & -1 \\
+0 & 0 & 0 \\
++1 & +2 & +1
+\end{bmatrix} * I
+$$
+
+The gradient magnitude $G$ can be computed using the Euclidean norm of the gradient approximations:
+
+$$G = \sqrt{G_x^2 + G_y^2}$$
+
+Alternatively, for computational efficiency, the gradient magnitude can be approximated using the absolute values of the gradient approximations:
+
+$$G = |G_x| + |G_y|$$
+
+The gradient direction $\theta$ can be calculated using the arctangent of the ratio between the vertical and horizontal gradient approximations:
+
+$$\theta = \arctan\left(\frac{G_y}{G_x}\right)$$
+
+Pixels with gradient magnitudes exceeding a specified threshold are considered edge pixels, while those below the threshold are classified as non-edge pixels.
+
+```python
+import cv2
+import numpy as np
+
+def sobel_edge_detection(image, ksize:int = 3):
+    image = image.astype(np.float32)
+
+    sobelx = cv2.Sobel(image, cv2.CV_64F, 1, 0, ksize=ksize)
+    sobely = cv2.Sobel(image, cv2.CV_64F, 0, 1, ksize=ksize)
+
+    sobel = np.sqrt(sobelx**2 + sobely**2)
+    sobel = cv2.normalize(sobel, None, 0, 255, cv2.NORM_MINMAX)
+    return sobel.astype(np.uint8)
+```
+
+![Sobel Edge Detection - 317947](../assets/ct-scan-segmentation-preprocessing/edge_detection/317947_sobel_edges.jpg)
+
+##### Optimal Parameters
+
+Varying Kernel Size:
+
+![Sobel Edge Detection - Varying Kernel Size - 317947](../assets/ct-scan-segmentation-preprocessing/edge_detection/317947_sobel_ksize.gif)
+
+Optimal Kernel Size: $3$.
+
+#### Canny Edge Detection
+
+The Canny edge detection algorithm is a multi-stage process that aims to detect a wide range of edges in an image while minimizing false positives and ensuring good localization of the detected edges. It is widely regarded as the optimal edge detection method due to its robustness and ability to handle noise in images.
+
+The Canny edge detection algorithm consists of the following steps:
+
+1. **Gaussian smoothing**: The input image $I$ is convolved with a Gaussian filter $G_\sigma$ to reduce noise and smooth the image:
+
+$$I_{smooth} = G_\sigma * I$$
+
+2. **Gradient computation**: The horizontal and vertical gradients, $G_x$ and $G_y$, are computed using finite difference approximations or by convolving the smoothed image with appropriate kernels, such as the Sobel operator:
+
+$$G_x = \frac{\partial I_{smooth}}{\partial x}, \quad G_y = \frac{\partial I_{smooth}}{\partial y}$$
+
+3. **Non-maximum suppression**: The gradient magnitude $G$ and direction $\theta$ are computed, and non-maximum suppression is applied to thin the edges, preserving only the local maxima of the gradient magnitude:
+
+$$G = \sqrt{G_x^2 + G_y^2}, \quad \theta = \arctan\left(\frac{G_y}{G_x}\right)$$
+
+$$I_{thin} = \text{non\_max\_suppression}(G, \theta)$$
+
+4. **Double thresholding**: Two threshold values, $T_{low}$ and $T_{high}$, are used to classify the remaining edge pixels into strong, weak, and non-edge pixels. Pixels with gradient magnitudes above $T_{high}$ are considered strong edges, while pixels with gradient magnitudes between $T_{low}$ and $T_{high}$ are considered weak edges.
+
+5. **Edge tracking by hysteresis**: The final step involves connecting the strong and weak edges to form continuous edge segments using hysteresis thresholding:
+
+$$I_{edge} = \text{hysteresis\_thresholding}(I_{thin}, T_{low}, T_{high})$$
+
+```python
+from skimage.feature import canny
+
+def canny_edge_detection(image, sigma=1.0, low_threshold=0.1, high_threshold=0.2):
+    return canny(image, sigma=sigma, low_threshold=low_threshold, high_threshold=high_threshold)
+```
+
+![Canny Edge Detection - 317947](../assets/ct-scan-segmentation-preprocessing/edge_detection/317947_canny_edges.jpg)
+
+##### Optimal Parameters
+
+Varying Low and High Thresholds with Sigma $1.0$:
+
+![Canny Edge Detection - Varying Thresholds - 317947](../assets/ct-scan-segmentation-preprocessing/edge_detection/317947_canny_low_threshold.gif)
+
+Optimal Low Threshold: $0.1$ and High Threshold: $0.2$ with Sigma $1.0$.
+
+#### Laplacian of Gaussian (LoG) Edge Detection
+
+The Laplacian of Gaussian (LoG) edge detection method is a second-order derivative-based technique that combines Gaussian smoothing with the Laplacian operator to detect edges in an image. It is particularly effective in detecting edges at multiple scales and is less sensitive to noise compared to first-order derivative-based methods.
+
+The LoG edge detection algorithm consists of the following steps:
+
+1. **Gaussian smoothing**: The input image $I$ is convolved with a Gaussian filter $G_\sigma$ to reduce noise and smooth the image:
+
+$$I_{smooth} = G_\sigma * I$$
+
+2. **Laplacian computation**: The Laplacian operator $\nabla^2$ is applied to the smoothed image to compute the second-order derivatives:
+
+$$\nabla^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$$
+
+$$LoG = \nabla^2 G_\sigma = \frac{\partial^2 G_\sigma}{\partial x^2} + \frac{\partial^2 G_\sigma}{\partial y^2}$$
+
+3. **Zero-crossing detection**: The edges are identified by locating the zero-crossings in the Laplacian response, where the Laplacian changes sign, indicating the presence of an edge:
+
+$$I_{edge} = \text{zero\_crossing}(LoG * I_{smooth})$$
+
+The LoG operator can be approximated using a discrete kernel, such as the following 5x5 kernel:
+
+$$
+LoG_{5 \times 5} = \begin{bmatrix}
+0 & 0 & -1 & 0 & 0 \\
+0 & -1 & -2 & -1 & 0 \\
+-1 & -2 & 16 & -2 & -1 \\
+0 & -1 & -2 & -1 & 0 \\
+0 & 0 & -1 & 0 & 0
+\end{bmatrix}
+$$
+
+```python
+import numpy as np
+from skimage import filters
+
+def log_edge_detection(image, sigma=1.0):
+    image = image.astype(np.float32)
+
+    smoothed_image = filters.gaussian(image, sigma=sigma)
+    laplacian_image = filters.laplace(smoothed_image)
+
+    zero_crossings = np.zeros_like(laplacian_image)
+    for shift in (-1, 1):
+        for axis in (0, 1):
+            shifted = np.roll(laplacian_image, shift=shift, axis=axis)
+            zero_crossings += ((laplacian_image < 0) & (shifted > 0)) | ((laplacian_image > 0) & (shifted < 0))
+
+    return zero_crossings.astype(float)
+```
+
+![LoG Edge Detection - 317947](../assets/ct-scan-segmentation-preprocessing/edge_detection/317947_log_edges.jpg)
+
+##### Optimal Parameters
+
+Varying Sigma:
+
+![LoG Edge Detection - Varying Sigma - 317947](../assets/ct-scan-segmentation-preprocessing/edge_detection/317947_log_sigma.gif)
+
+Optimal Sigma: $3.0$.

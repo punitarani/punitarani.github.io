@@ -224,3 +224,184 @@ Varying Threshold:
 ![Wavelet Denoising - Varying Threshold - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_wavelet_denoising_threshold.gif)
 
 Optimal Threshold: $0.1$.
+
+### Normalization
+
+Normalization is the process of adjusting or transforming the intensity values of an image to a common scale or range. It is a crucial step in many image processing and analysis pipelines, particularly in medical imaging, where images from different sources, modalities, or acquisition parameters may exhibit varying intensity distributions.
+
+The primary goal of normalization is to ensure that intensity values representing similar structures or tissues are consistent across different images or datasets. This consistency is essential for tasks such as image registration, segmentation, and quantitative analysis, where intensity values play a crucial role in identifying and distinguishing different structures or regions of interest.
+
+Normalization is particularly important in medical imaging applications, where images from different scanners, acquisition protocols, or patient populations may have varying intensity distributions. For example, in CT imaging, the same tissue type may have different intensity values across different scans due to variations in scanner calibration, exposure settings, or patient factors. Normalization can help to overcome these variations and ensure that similar tissues have consistent intensity representations, which is crucial for accurate diagnosis and analysis.
+
+There are various normalization techniques available, including histogram matching, intensity windowing, z-score normalization, percentile normalization, and contrast limited adaptive histogram equalization (CLAHE). The choice of normalization method depends on factors such as the characteristics of the image data, the specific application requirements, and the desired outcome.
+
+Normalization is also important in other fields, such as computer vision and machine learning, where consistent and standardized input data is often required for training and inference tasks. By normalizing the input data, these techniques can achieve better performance, improved generalization, and more reliable results.
+
+#### Histogram Matching
+
+Histogram matching is a technique used to match the intensity distribution of one image to that of a reference image. This can be useful for normalizing the intensity values across different CT scans, ensuring that tissues with similar densities have consistent intensity values, even when scanned under different conditions or on different scanners.
+
+The basic idea behind histogram matching is to find a mapping function that transforms the intensity distribution of the source image to match the intensity distribution of the reference image. This mapping function is then applied to the source image, effectively normalizing its intensity values to match the reference. This is achieved through a mapping function derived from the cumulative distribution functions (CDFs) of the two images.
+
+$$T(r) = G^{-1}(F(r))$$
+
+The transformation function applied to the source image is denoted as $T(r)$, where $r$ represents the pixel values of the source image.
+
+$F(r)$ is the cumulative distribution function of the source image.
+
+$G^{-1}$ is the inverse cumulative distribution function of the reference image.
+
+```python
+from skimage.exposure import match_histograms
+
+def histogram_matching(image, reference):
+    return match_histograms(image, reference, multichannel=True)
+```
+
+#### Intensity Windowing
+
+Intensity windowing is a widely used technique in medical imaging, particularly for CT scans. It involves adjusting the window level and window width to display a specific range of intensity values, emphasizing or suppressing certain structures based on their density.
+
+The window level determines the midpoint of the intensity range to be displayed, while the window width controls the range of intensities around the midpoint to be displayed. By adjusting these parameters, radiologists can optimize the visualization of specific structures, such as bones, soft tissues, or tumors.
+
+Intensity windowing can also be used for normalization purposes by applying a consistent window level and width across different CT scans, ensuring that tissues with similar densities have consistent intensity values.
+
+Intensity windowing adjusts the range of pixel intensities that are visible in an image based on a defined window level and window width. It's particularly useful in medical imaging for highlighting specific features.
+
+$$I_{windowed} = \frac{\text{clip}(I, WL - \frac{WW}{2}, WL + \frac{WW}{2}) - (WL - \frac{WW}{2})}{WW} \times 255$$
+
+$I$ is the original image
+
+$WL$ (Window Level) is the midpoint of the desired intensity range
+
+$WW$ (Window Width) is the size of the range around $WL$
+
+The result $I_{windowed}$ is scaled between 0 and 255.
+
+```python
+import numpy as np
+
+def intensity_windowing(image, window_level, window_width):
+    window_min = window_level - (window_width // 2)
+    window_max = window_level + (window_width // 2)
+    image_windowed = np.clip(image, window_min, window_max)
+    return (image_windowed - window_min) / (window_max - window_min) * 255
+```
+
+![Intensity Windowing - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_windowed.jpg)
+
+##### Optimal Parameters
+
+Varying Window Level:
+
+![Intensity Windowing - Varying Window Level - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_window_level.gif)
+
+Varying Window Width:
+
+![Intensity Windowing - Varying Window Width - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_window_width.gif)
+
+Optimal Parameters: Window Level $50$ and Window Width $200$.
+
+#### Z-Score Normalization
+
+Z-score normalization, also known as standard score normalization, is a technique used to standardize the range of intensity values in an image. It centers the intensity distribution around a mean of 0 and scales it to have a standard deviation of 1. This normalization method is particularly useful when dealing with images from different sources or acquired under different conditions, as it ensures that the intensity values are comparable across different datasets.
+
+The principle behind z-score normalization is to subtract the mean intensity value from each pixel and then divide by the standard deviation of the intensity values. This transformation ensures that the resulting intensity distribution has a mean of 0 and a standard deviation of 1.
+
+Z-score normalization is widely used in various applications, including medical image analysis, computer vision, and machine learning. It can help to improve the performance of image processing algorithms by reducing the influence of outliers and ensuring that the intensity values are on a common scale. Additionally, z-score normalization can be beneficial for certain image enhancement techniques, such as contrast stretching or histogram equalization, as it can improve the effectiveness of these methods by normalizing the input data.
+
+$$I_{normalized} = \frac{I - \mu}{n \sigma}$$
+
+In this equation, $I$ represents the original image, $\mu$ is the mean intensity value of the image, and $\sigma$ is the standard deviation of the intensity values. The resulting $I_{normalized}$ is the z-score normalized image, where the intensity values have been centered around $0$ and scaled to have a standard deviation of $1$. The additional factor $n$ is used to scale the standard deviation to avoid over-amplification of the intensity values.
+
+```python
+import numpy as np
+
+def z_score_normalization(image, n = 1):
+    mean = np.mean(image)
+    std = np.std(image)
+    return (image - mean) / (n * std)
+```
+
+![Z-Score Normalization - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_z_score_normalized.jpg)
+
+##### Optimal Parameters
+
+Varying Scaling Factor:
+
+![Z-Score Normalization - Varying Scaling Factor - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_z_score_normalization.gif)
+
+Optimal Scaling Factor: $2$.
+
+#### Percentile Normalization
+
+Percentile normalization is a technique used to normalize the intensity values of an image based on specific percentiles of the intensity distribution. It is particularly useful for reducing the influence of outliers or extreme intensity values, which can be common in medical imaging due to factors such as noise or artifacts.
+
+The basic idea behind percentile normalization is to set a lower and upper percentile value, and then linearly scale the intensity values between these two percentiles to a desired range. Intensity values below the lower percentile are set to the minimum value of the desired range, and intensity values above the upper percentile are set to the maximum value of the desired range.
+
+Percentile normalization is commonly used in medical image analysis, particularly for preprocessing and normalization of CT or MRI scans. It can help to ensure that the intensity values of different tissues or structures are consistently represented across different scans or imaging modalities, which can be crucial for tasks such as segmentation, registration, or computer-aided diagnosis.
+
+$$I_{normalized} = \frac{\text{clip}(I - P_l, 0, P_u - P_l)}{P_u - P_l}$$
+
+In this equation, $I$ represents the original image, $P_l$ is the lower percentile value (e.g., 5th percentile), and $P_u$ is the upper percentile value (e.g., 95th percentile). The $\text{clip}$ function ensures that intensity values below $P_l$ are set to $0$, and intensity values above $P_u - P_l$ are set to $1$. The resulting $I_{normalized}$ is the percentile normalized image, where the intensity values have been scaled to a range of $[0, 1]$ based on the specified percentile values.
+
+```python
+import numpy as np
+
+def percentile_normalization(image, lower_percentile=5, upper_percentile=95):
+    lower_value = np.percentile(image, lower_percentile)
+    upper_value = np.percentile(image, upper_percentile)
+    normalized = (image - lower_value) / (upper_value - lower_value)
+    return np.clip(normalized, 0, 1)
+```
+
+![Percentile Normalization - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_percentile_normalized.jpg)
+
+##### Optimal Parameters
+
+Varying Lower and Upper Percentiles:
+
+![Percentile Normalization - Varying Percentiles - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_percentile_normalization.gif)
+
+#### Contrast Limited Adaptive Histogram Equalization (CLAHE)
+
+Contrast Limited Adaptive Histogram Equalization (CLAHE) is a technique used to improve the local contrast of an image by applying histogram equalization on individual regions or tiles of the image. Unlike global histogram equalization, which can over-amplify noise and result in undesirable artifacts, CLAHE operates on small regions of the image, limiting the contrast enhancement in areas with high contrast.
+
+CLAHE is particularly useful for enhancing the visibility of details in medical images, such as CT scans or X-rays, where different regions of the image may have varying contrast levels. By applying CLAHE, the contrast in low-contrast regions can be improved, while preventing over-enhancement in high-contrast areas, resulting in better overall image quality and detail preservation.
+
+The CLAHE algorithm works by dividing the image into non-overlapping tiles or regions. For each tile, a histogram of the intensity values is computed, and histogram equalization is applied to redistribute the intensity values within that tile. To prevent over-amplification of noise or artifacts, the histogram is clipped at a specified limit before computing the cumulative distribution function (CDF) used for histogram equalization.
+
+CLAHE enhances the contrast of images by transforming the local histograms. It limits the amplification of noise by clipping the histogram at a specified limit before computing the cumulative histogram.
+
+$$\text{CLAHE}(I) = \sum_{\text{tile}} \text{clip}(\text{histogram}(I_{\text{tile}}), \text{clip\_limit}) \cdot \text{CDF}$$
+
+Here, $I$ is the input image divided into tiles, and each tile's histogram is clipped at the $\text{clip\_limit}$. The cumulative distribution function (CDF) is then used to map the pixel values, enhancing contrast locally within each tile.
+
+$n$ this equation, $I$ represents the input image divided into tiles, and $\text{clip}(\text{histogram}(I_{\text{tile}}), \text{clip\_limit})$ denotes the clipping of the histogram for each tile at a specified $\text{clip\_limit}$. The cumulative distribution function (CDF) is then used to map the pixel values, enhancing contrast locally within each tile. The resulting $\text{CLAHE}(I)$ is the contrast-enhanced image with improved local contrast and reduced noise amplification.
+
+CLAHE is widely used in various medical imaging applications, such as CT scan analysis, X-ray imaging, and microscopy, to improve the visibility of details and enhance the diagnostic quality of the images.
+
+```python
+from skimage.exposure import equalize_adapthist
+
+def clahe_normalization(image, kernel_size=None, clip_limit=0.01, nbins=256):
+    return equalize_adapthist(image, kernel_size=kernel_size, clip_limit=clip_limit, nbins=nbins)
+```
+
+![CLAHE Normalization - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_clahe_normalized.jpg)
+
+##### Optimal Parameters
+
+Varying Clip Limit with $8 \times 8$ Kernel Size and $256$ Bins:
+
+![CLAHE Normalization - Varying Clip Limit - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_clahe_clip_limit.gif)
+
+Varying Kernel Size with $0.01$ Clip Limit and $256$ Bins:
+
+![CLAHE Normalization - Varying Kernel Size - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_clahe_kernel_size.gif)
+
+Varying Number of Bins with $0.01$ Clip Limit and $8 \times 8$ Kernel Size:
+
+![CLAHE Normalization - Varying Number of Bins - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_clahe_nbins.gif)
+
+Optimal Parameters: Clip Limit $0.01$, Kernel Size $8 \times 8$, and Number of Bins $256$.

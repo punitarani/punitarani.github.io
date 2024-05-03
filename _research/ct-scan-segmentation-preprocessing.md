@@ -68,8 +68,6 @@ def gaussian_denoising(image, kernel_size, sigma):
 
 ![Gaussian Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_gaussian_denoised.jpg)
 
-##### Optimal Parameters
-
 Through experimentation, the optimal parameters for Gaussian denoising were determined by varying the kernel size and sigma values.
 The following visualizations demonstrate the impact of different kernel sizes and sigma values on the denoising process.
 
@@ -100,8 +98,6 @@ def median_denoising(image, kernel_size):
 
 ![Median Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_median_denoised.jpg)
 
-##### Optimal Parameters
-
 Varying Kernel Size:
 
 ![Median Denoising - Varying Kernel Size - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_median_denoising_kernel_size.gif)
@@ -125,8 +121,6 @@ def non_local_means_denoising(image, filter_strength):
 ```
 
 ![Non-Local Means Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_nlm_denoised.jpg)
-
-##### Optimal Parameters
 
 Varying block size with search window size $21$ and filter strength $10$:
 
@@ -161,8 +155,6 @@ def tv_denoising(image, weight=0.1):
 
 ![Total Variation Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_tv_denoised.jpg)
 
-##### Optimal Parameters
-
 Varying Weight:
 
 ![Total Variation Denoising - Varying Weight - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_tv_denoising_weight.gif)
@@ -189,8 +181,6 @@ def bilateral_denoising(image, win_size=5, sigma_color=0.1, sigma_spatial=15):
 ```
 
 ![Bilateral Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_bilateral_denoised.jpg)
-
-##### Optimal Parameters
 
 Varying Sigma Color:
 
@@ -220,8 +210,6 @@ def wavelet_denoising(image, method='BayesShrink', mode='soft', wavelet='db1', r
 ```
 
 ![Wavelet Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_wavelet_denoised.jpg)
-
-##### Optimal Parameters
 
 Varying Threshold:
 
@@ -294,8 +282,6 @@ def intensity_windowing(image, window_level, window_width):
 
 ![Intensity Windowing - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_windowed.jpg)
 
-##### Optimal Parameters
-
 Varying Window Level:
 
 ![Intensity Windowing - Varying Window Level - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_window_level.gif)
@@ -329,8 +315,6 @@ def z_score_normalization(image, n = 1):
 
 ![Z-Score Normalization - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_z_score_normalized.jpg)
 
-##### Optimal Parameters
-
 Varying Scaling Factor:
 
 ![Z-Score Normalization - Varying Scaling Factor - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_z_score_normalization.gif)
@@ -360,8 +344,6 @@ def percentile_normalization(image, lower_percentile=5, upper_percentile=95):
 ```
 
 ![Percentile Normalization - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_percentile_normalized.jpg)
-
-##### Optimal Parameters
 
 Varying Lower and Upper Percentiles:
 
@@ -393,8 +375,6 @@ def clahe_normalization(image, kernel_size=None, clip_limit=0.01, nbins=256):
 ```
 
 ![CLAHE Normalization - 317947](../assets/ct-scan-segmentation-preprocessing/normalize/317947_clahe_normalized.jpg)
-
-##### Optimal Parameters
 
 Varying Clip Limit with $8 \times 8$ Kernel Size and $256$ Bins:
 
@@ -471,8 +451,6 @@ def sobel_edge_detection(image, ksize:int = 3):
 
 ![Sobel Edge Detection - 317947](../assets/ct-scan-segmentation-preprocessing/edge_detection/317947_sobel_edges.jpg)
 
-##### Optimal Parameters
-
 Varying Kernel Size:
 
 ![Sobel Edge Detection - Varying Kernel Size - 317947](../assets/ct-scan-segmentation-preprocessing/edge_detection/317947_sobel_ksize.gif)
@@ -513,8 +491,6 @@ def canny_edge_detection(image, sigma=1.0, low_threshold=0.1, high_threshold=0.2
 ```
 
 ![Canny Edge Detection - 317947](../assets/ct-scan-segmentation-preprocessing/edge_detection/317947_canny_edges.jpg)
-
-##### Optimal Parameters
 
 Varying Low and High Thresholds with Sigma $1.0$:
 
@@ -574,8 +550,6 @@ def log_edge_detection(image, sigma=1.0):
 ```
 
 ![LoG Edge Detection - 317947](../assets/ct-scan-segmentation-preprocessing/edge_detection/317947_log_edges.jpg)
-
-##### Optimal Parameters
 
 Varying Sigma:
 

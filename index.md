@@ -24,8 +24,8 @@ My expertise spans embedded systems, backend development, and machine learning.
 
 ## Education
 
-- **Arizona State University**
-  - **Degree**: Bachelor's degree in Computer Science
+- **B.S. in Computer Science**
+  - **Arizona State University**
   - **Minor**: Computational Mathematical Sciences
   - **Honors**:
     - Barrett, The Honors College

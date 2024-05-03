@@ -12,15 +12,38 @@ My expertise spans embedded systems, backend development, and machine learning.
 - **Natural Language Processing**: Developing and fine-tuning (large) language models for quantitative finance and scientific literature analysis.
 - **Quantitative Finance**: Developing and backtesting trading strategies using machine learning and deep learning.
 
-## Skills
+## Experience
 
-- **Languages**: Python, C/C++, JavaScript, Java, SQL
-- **Backend Frameworks**: Django, FastAPI, and Express.
-- **Frontend Frameworks**: React, SvelteKit and Next.JS.
-- **Machine Learning and Artificial Intelligence**: JAX, OpenCV, PyTorch, and Scikit-Learn.
-- **Firmware Development**: Bare-metal and RTOS with C for STM32, Renesas, and Arduino.
-- **Hardware Development**: Circuit and PCB Design with Altium and Eagle.
-- **Cloud & DevOps**: AWS, Azure, CircleCI, Docker, and Terraform.
+- **Software Engineer**
+  - **Company**: [NOCO](https://www.no.co)
+  - **Location**: Chandler, AZ
+  - **Dates**: June 2024 - Present
+- **Co-Founder, Backend and Machine Learning**
+  - **Company**: [Prospify](https://www.prospify.co)
+  - **Location**: Berkeley, CA
+  - **Dates**: Jun 2023 - Present
+- **Software Engineering Intern**
+  - **Company**: [NOCO](https://www.no.co)
+  - **Location**: Chandler, AZ
+  - **Dates**: Sep 2021 - May 2024
+- **Co-Founder, Product**
+  - **Company**: UVC Mask
+- **Avionics Engineer**
+  - **Company**: Helios Rocketry
+  - **Location**: Tempe, AZ
+  - **Dates**: Sep 2020 - Nov 2021
+- **Engineering Intern**
+  - **Company**: Grand Canyon University
+  - **Location**: Phoenix, AZ
+  - **Dates**: Aug 2019 - May 2020
+- **Founder**
+  - **Company**: Ridge Rocketry
+  - **Location**: Glendale, AZ
+  - **Dates**: Aug 2017 - May 2020
+- **Intern**
+  - **Company**: Valley Metro RPTA
+  - **Location**: Phoenix, AZ
+  - **Dates**: Jun 2019 - Aug 2019
 
 ## Education
 
@@ -34,5 +57,12 @@ My expertise spans embedded systems, backend development, and machine learning.
     - Dean's List
   - **Thesis**: "buff - An AI Assistant Framework to Accelerate Scientific Research and Discovery"
 
-I specialize in researching and developing Algorithms and ML systems to solve complex real-world problems.
-My focus areas are quantitative finance, scientific computing, and scalable AI systems.
+## Skills
+
+- **Languages**: Python, C/C++, JavaScript, Java, SQL
+- **Backend Frameworks**: Django, FastAPI, and Express.
+- **Frontend Frameworks**: React, SvelteKit and Next.JS.
+- **Machine Learning and Artificial Intelligence**: JAX, OpenCV, PyTorch, and Scikit-Learn.
+- **Firmware Development**: Bare-metal and RTOS with C for STM32, Renesas, and Arduino.
+- **Hardware Development**: Circuit and PCB Design with Altium and Eagle.
+- **Cloud & DevOps**: AWS, Azure, CircleCI, Docker, and Terraform.

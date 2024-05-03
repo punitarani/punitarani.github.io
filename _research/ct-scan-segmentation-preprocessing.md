@@ -10,6 +10,8 @@ category: Computer Vision
 
 Supervised by [Dr. Malena Español](https://math.la.asu.edu/~mespanol/)
 
+## Abstract
+
 Popliteal artery aneurysms (PAAs) are focal dilations of the popliteal artery that pose a significant risk of rupture and limb loss. Accurate segmentation of PAAs from computed tomography (CT) scans is crucial for precise diagnosis and treatment planning. However, the presence of noise, intensity variations, and artifacts in CT images can hinder the performance of segmentation algorithms. This research investigates the effectiveness of pre-processing techniques in enhancing the segmentation accuracy of knee CT scans for PAA diagnosis and management. A comprehensive analysis of current pre-processing methods, their limitations, and potential advancements is presented. The study employs a dataset of knee CT scans with PAAs and applies various pre-processing techniques, including noise reduction, intensity normalization, and contrast enhancement. The impact of these techniques on segmentation accuracy is evaluated using metrics such as Dice similarity coefficient and Hausdorff distance. The results demonstrate that pre-processing significantly improves PAA segmentation accuracy, with specific techniques showing superior performance. The findings highlight the importance of incorporating pre-processing as a critical step in the PAA segmentation pipeline and provide insights into future research directions for enhancing the robustness and generalizability of these techniques. This research aims to contribute to the advancement of PAA diagnosis and treatment planning, ultimately leading to improved patient outcomes.
 
 ## Background
@@ -37,7 +39,7 @@ In this section, we present the pre-processing techniques employed to enhance th
 
 Here is the original image of a knee CT scan with a popliteal artery aneurysm (PAA) before pre-processing (courtesy of [CTisus](https://ctisus.com/)):
 
-![Original CT Scan - 317947](./ct-scan-segmentation-preprocessing/317947.jpg)
+![Original CT Scan - 317947](../assets/ct-scan-segmentation-preprocessing/317947.jpg)
 
 ### Denoising
 
@@ -63,7 +65,7 @@ def gaussian_denoising(image, kernel_size, sigma):
 	return cv2.GaussianBlur(image, kernel_size, sigma)
 ```
 
-![Gaussian Denoising - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_gaussian_denoised.jpg)
+![Gaussian Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_gaussian_denoised.jpg)
 
 ##### Optimal Parameters
 
@@ -72,11 +74,11 @@ The following visualizations demonstrate the impact of different kernel sizes an
 
 Varying Kernel Size with $\sigma = 1.5$:
 
-![Gaussian Denoising - Varying Kernel Size - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_gaussian_denoising_kernel_size.gif)
+![Gaussian Denoising - Varying Kernel Size - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_gaussian_denoising_kernel_size.gif)
 
 Varying Sigma with Kernel Size $5 \times 5$:
 
-![Gaussian Denoising - Varying Sigma - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_gaussian_denoising_sigma.gif)
+![Gaussian Denoising - Varying Sigma - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_gaussian_denoising_sigma.gif)
 
 Optimal Parameters: Kernel Size $5 \times 5$ and $\sigma = 1.5$.
 
@@ -95,13 +97,13 @@ def median_denoising(image, kernel_size):
 	return cv2.medianBlur(image, kernel_size)
 ```
 
-![Median Denoising - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_median_denoised.jpg)
+![Median Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_median_denoised.jpg)
 
 ##### Optimal Parameters
 
 Varying Kernel Size:
 
-![Median Denoising - Varying Kernel Size - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_median_denoising_kernel_size.gif)
+![Median Denoising - Varying Kernel Size - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_median_denoising_kernel_size.gif)
 
 As seen in the visualization, the optimal kernel size for median denoising is $3 \times 3$.
 As the kernel size increases, the denoising effect becomes more pronounced, but it may also blur the image and lose fine details.
@@ -120,21 +122,21 @@ def non_local_means_denoising(image, filter_strength):
 	return cv2.fastNlMeansDenoisingColored(image, None, filter_strength, filter_strength, 7, 21)
 ```
 
-![Non-Local Means Denoising - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_nlm_denoised.jpg)
+![Non-Local Means Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_nlm_denoised.jpg)
 
 ##### Optimal Parameters
 
 Varying block size with search window size $21$ and filter strength $10$:
 
-![Non-Local Means Denoising - Varying Block Size - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_nlm_denoising_block_size.gif)
+![Non-Local Means Denoising - Varying Block Size - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_nlm_denoising_block_size.gif)
 
 Varying search window size with block size $7$ and filter strength $10$:
 
-![Non-Local Means Denoising - Varying Search Window Size - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_nlm_denoising_search_window.gif)
+![Non-Local Means Denoising - Varying Search Window Size - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_nlm_denoising_search_window.gif)
 
 Varying filter strength (h) with block size $7$ and search window size $21$:
 
-![Non-Local Means Denoising - Varying Filter Strength - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_nlm_denoising_h.gif)
+![Non-Local Means Denoising - Varying Filter Strength - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_nlm_denoising_h.gif)
 
 Optimal Parameters: Block Size $7$, Search Window Size $21$, and Filter Strength $10$.
 
@@ -153,13 +155,13 @@ def tv_denoising(image, weight=0.1):
 	return denoise_tv_chambolle(image, weight=weight)
 ```
 
-![Total Variation Denoising - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_tv_denoised.jpg)
+![Total Variation Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_tv_denoised.jpg)
 
 ##### Optimal Parameters
 
 Varying Weight:
 
-![Total Variation Denoising - Varying Weight - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_tv_denoising_weight.gif)
+![Total Variation Denoising - Varying Weight - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_tv_denoising_weight.gif)
 
 Optimal Weight: $0.1$.
 
@@ -182,17 +184,17 @@ def bilateral_denoising(image, win_size=5, sigma_color=0.1, sigma_spatial=15):
     return denoise_bilateral(image, win_size=win_size, sigma_color=sigma_color, sigma_spatial=sigma_spatial)
 ```
 
-![Bilateral Denoising - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_bilateral_denoised.jpg)
+![Bilateral Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_bilateral_denoised.jpg)
 
 ##### Optimal Parameters
 
 Varying Sigma Color:
 
-![Bilateral Denoising - Varying Sigma Color - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_bilateral_denoising_sigma_color.gif)
+![Bilateral Denoising - Varying Sigma Color - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_bilateral_denoising_sigma_color.gif)
 
 Varying Sigma Spatial:
 
-![Bilateral Denoising - Varying Sigma Spatial - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_bilateral_denoising_sigma_spatial.gif)
+![Bilateral Denoising - Varying Sigma Spatial - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_bilateral_denoising_sigma_spatial.gif)
 
 Optimal Parameters: Sigma Color $0.1$ and Sigma Spatial $15$.
 
@@ -213,12 +215,12 @@ def wavelet_denoising(image, method='BayesShrink', mode='soft', wavelet='db1', r
     return denoise_wavelet(image, method=method, mode=mode, wavelet=wavelet, rescale_sigma=rescale_sigma)
 ```
 
-![Wavelet Denoising - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_wavelet_denoised.jpg)
+![Wavelet Denoising - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_wavelet_denoised.jpg)
 
 ##### Optimal Parameters
 
 Varying Threshold:
 
-![Wavelet Denoising - Varying Threshold - 317947](./ct-scan-segmentation-preprocessing/denoise/317947_wavelet_denoising_threshold.gif)
+![Wavelet Denoising - Varying Threshold - 317947](../assets/ct-scan-segmentation-preprocessing/denoise/317947_wavelet_denoising_threshold.gif)
 
 Optimal Threshold: $0.1$.

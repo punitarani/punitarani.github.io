@@ -22,5 +22,17 @@ My expertise spans embedded systems, backend development, and machine learning.
 - **Hardware Development**: Circuit and PCB Design with Altium and Eagle.
 - **Cloud & DevOps**: AWS, Azure, CircleCI, Docker, and Terraform.
 
+## Education
+
+- **Arizona State University**
+  - **Degree**: Bachelor's degree in Computer Science
+  - **Minor**: Computational Mathematical Sciences
+  - **Honors**:
+    - Barrett, The Honors College
+    - Graduated Summa Cum Laude
+    - New American University Scholar
+    - Dean's List
+  - **Thesis**: "buff - An AI Assistant Framework to Accelerate Scientific Research and Discovery"
+
 I specialize in researching and developing Algorithms and ML systems to solve complex real-world problems.
 My focus areas are quantitative finance, scientific computing, and scalable AI systems.

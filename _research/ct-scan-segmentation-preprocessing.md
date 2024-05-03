@@ -359,11 +359,11 @@ The CLAHE algorithm works by dividing the image into non-overlapping tiles or re
 
 CLAHE enhances the contrast of images by transforming the local histograms. It limits the amplification of noise by clipping the histogram at a specified limit before computing the cumulative histogram.
 
-$$\text{CLAHE}(I) = \sum_{\text{tile}} \text{clip}(\text{histogram}(I_{\text{tile}}), \text{clip\_limit}) \cdot \text{CDF}$$
+$$\text{CLAHE}(I) = \sum_{\text{tile}} \text{clip}(\text{histogram}(I_{\text{tile}}), \text{clip_limit}) \cdot \text{CDF}$$
 
-Here, $I$ is the input image divided into tiles, and each tile's histogram is clipped at the $\text{clip\_limit}$. The cumulative distribution function (CDF) is then used to map the pixel values, enhancing contrast locally within each tile.
+Here, $I$ is the input image divided into tiles, and each tile's histogram is clipped at the $\text{clip_limit}$. The cumulative distribution function (CDF) is then used to map the pixel values, enhancing contrast locally within each tile.
 
-$n$ this equation, $I$ represents the input image divided into tiles, and $\text{clip}(\text{histogram}(I_{\text{tile}}), \text{clip\_limit})$ denotes the clipping of the histogram for each tile at a specified $\text{clip\_limit}$. The cumulative distribution function (CDF) is then used to map the pixel values, enhancing contrast locally within each tile. The resulting $\text{CLAHE}(I)$ is the contrast-enhanced image with improved local contrast and reduced noise amplification.
+$n$ this equation, $I$ represents the input image divided into tiles, and $\text{clip}(\text{histogram}(I_{\text{tile}}), \text{clip_limit})$ denotes the clipping of the histogram for each tile at a specified $\text{clip_limit}$. The cumulative distribution function (CDF) is then used to map the pixel values, enhancing contrast locally within each tile. The resulting $\text{CLAHE}(I)$ is the contrast-enhanced image with improved local contrast and reduced noise amplification.
 
 CLAHE is widely used in various medical imaging applications, such as CT scan analysis, X-ray imaging, and microscopy, to improve the visibility of details and enhance the diagnostic quality of the images.
 
@@ -475,13 +475,13 @@ $$G_x = \frac{\partial I_{smooth}}{\partial x}, \quad G_y = \frac{\partial I_{sm
 
 $$G = \sqrt{G_x^2 + G_y^2}, \quad \theta = \arctan\left(\frac{G_y}{G_x}\right)$$
 
-$$I_{thin} = \text{non\_max\_suppression}(G, \theta)$$
+$$I_{thin} = \text{non_max_suppression}(G, \theta)$$
 
 4. **Double thresholding**: Two threshold values, $T_{low}$ and $T_{high}$, are used to classify the remaining edge pixels into strong, weak, and non-edge pixels. Pixels with gradient magnitudes above $T_{high}$ are considered strong edges, while pixels with gradient magnitudes between $T_{low}$ and $T_{high}$ are considered weak edges.
 
 5. **Edge tracking by hysteresis**: The final step involves connecting the strong and weak edges to form continuous edge segments using hysteresis thresholding:
 
-$$I_{edge} = \text{hysteresis\_thresholding}(I_{thin}, T_{low}, T_{high})$$
+$$I_{edge} = \text{hysteresis_thresholding}(I_{thin}, T_{low}, T_{high})$$
 
 ```python
 from skimage.feature import canny
@@ -516,7 +516,7 @@ $$LoG = \nabla^2 G_\sigma = \frac{\partial^2 G_\sigma}{\partial x^2} + \frac{\pa
 
 3. **Zero-crossing detection**: The edges are identified by locating the zero-crossings in the Laplacian response, where the Laplacian changes sign, indicating the presence of an edge:
 
-$$I_{edge} = \text{zero\_crossing}(LoG * I_{smooth})$$
+$$I_{edge} = \text{zero_crossing}(LoG * I_{smooth})$$
 
 The LoG operator can be approximated using a discrete kernel, such as the following 5x5 kernel:
 

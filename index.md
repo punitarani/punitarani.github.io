@@ -66,3 +66,17 @@ My expertise spans embedded systems, backend development, and machine learning.
 - **Firmware Development**: Bare-metal and RTOS with C for STM32, Renesas, and Arduino.
 - **Hardware Development**: Circuit and PCB Design with Altium and Eagle.
 - **Cloud & DevOps**: AWS, Azure, CircleCI, Docker, and Terraform.
+
+---
+
+## Fun Facts About Me
+
+> 🇮🇳 I was born and raised in Bangalore, India.
+> 🇺🇸 I moved to the United States in 2016.
+
+> 🛰️ I presented my Space Settlement Design at the International Space Development Conference in 2015 in Toronto, Canada.
+
+> 🚀 I built one of the smallest Airbrake for sport rockets. [Learn more](https://punitarani.com/airbrake).
+
+> 👨🏾‍💻 I enjoy going to hackathons and building projects that solve real-world problems.
+> I've won a few of them too: [Hackathons](https://punitarani.com/hackathons).

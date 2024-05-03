@@ -10,6 +10,10 @@ prize: Grand Prize, Best Knowledge Intensive LLM App
 summary: Unlocking financial potential with AI precision, your future guided by a CFA qualified virtual advisor.
 ---
 
+> Winners Announcement: [Berkeley SkyDeck Newsletter](https://skydeck.berkeley.edu/newsletter-july-6-2023/)
+
+> Jerry Liu's post: [LlamaIndex Prize Winners](https://medium.com/llamaindex-blog/special-feature-berkeley-hackathon-projects-llamaindex-prize-winners-c135681bb6f0)
+
 [Devpost](https://devpost.com/software/prosper-ai)
 
 Unlocking financial potential with AI precision, your future guided by a CFA qualified virtual advisor.

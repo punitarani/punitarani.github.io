@@ -29,20 +29,16 @@ My expertise spans embedded systems, backend development, and machine learning.
 - **Co-Founder, Product**
   - **Company**: UVC Mask
 - **Avionics Engineer**
-  - **Company**: Helios Rocketry
-  - **Location**: Tempe, AZ
+  - **Company**: [Helios Rocketry](https://www.linkedin.com/company/heliosrocketry)
   - **Dates**: Sep 2020 - Nov 2021
 - **Engineering Intern**
   - **Company**: Grand Canyon University
-  - **Location**: Phoenix, AZ
   - **Dates**: Aug 2019 - May 2020
 - **Founder**
   - **Company**: Ridge Rocketry
-  - **Location**: Glendale, AZ
   - **Dates**: Aug 2017 - May 2020
 - **Intern**
-  - **Company**: Valley Metro RPTA
-  - **Location**: Phoenix, AZ
+  - **Company**: Valley Metro
   - **Dates**: Jun 2019 - Aug 2019
 
 ## Education
@@ -69,9 +65,10 @@ My expertise spans embedded systems, backend development, and machine learning.
 
 ---
 
-## Fun Facts About Me
+## Fun Facts
 
 > 🇮🇳 I was born and raised in Bangalore, India.
+>
 > 🇺🇸 I moved to the United States in 2016.
 
 > 🛰️ I presented my Space Settlement Design at the International Space Development Conference in 2015 in Toronto, Canada.
@@ -79,4 +76,5 @@ My expertise spans embedded systems, backend development, and machine learning.
 > 🚀 I built one of the smallest Airbrake for sport rockets. [Learn more](https://punitarani.com/airbrake).
 
 > 👨🏾‍💻 I enjoy going to hackathons and building projects that solve real-world problems.
+>
 > I've won a few of them too: [Hackathons](https://punitarani.com/hackathons).

@@ -10,6 +10,8 @@ prize: AI Mastermind, Climate Action Hero, HealthTech Hero, Hacking Hero
 summary: Combat food waste while supporting those in need. Our service makes it easy to collect and donate excess food.
 ---
 
+> Winners Announcement: [Hack@CEWIT 2023](https://www.cewit.org/hackatcewit2023//About/Past%20Winners?accordion=content-d19e103)
+
 [Devpost](https://devpost.com/software/wastenot-tm16vk) |
 [GitHub](https://github.com/punitarani/wastenot)
 

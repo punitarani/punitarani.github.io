@@ -38,7 +38,7 @@ My expertise spans embedded systems, backend development, and machine learning.
   - **Company**: Ridge Rocketry
   - **Dates**: Aug 2017 - May 2020
 - **Intern**
-  - **Company**: Valley Metro
+  - **Company**: [Valley Metro](https://www.valleymetro.org/)
   - **Dates**: Jun 2019 - Aug 2019
 
 ## Education
@@ -72,6 +72,8 @@ My expertise spans embedded systems, backend development, and machine learning.
 > 🇺🇸 I moved to the United States in 2016.
 
 > 🛰️ I presented my Space Settlement Design at the International Space Development Conference in 2015 in Toronto, Canada.
+>
+> [Read feature on The Economic Times](https://economictimes.indiatimes.com/news/science/nasa-contest-teens-script-a-space-odyssey/articleshow/51627181.cms?from=mdr)
 
 > 🚀 I built one of the smallest Airbrake for sport rockets. [Learn more](https://punitarani.com/airbrake).
 

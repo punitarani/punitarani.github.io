@@ -56,6 +56,7 @@ There are various denoising techniques available, ranging from simple filters (e
 Gaussian filtering is a linear smoothing filter that helps reduce Gaussian noise while preserving edges in the image. It convolves the image with a Gaussian kernel to remove high-frequency components.
 
 $$G(x, y) = \frac{1}{2\pi\sigma^2}e^{-\frac{x^2 + y^2}{2\sigma^2}}$$
+
 $G$ s the Gaussian function, x and y are the distances from the origin in the horizontal and vertical directions, and $\sigma$ is the standard deviation of the Gaussian distribution.
 
 ```python
@@ -113,6 +114,7 @@ As the kernel size increases, the denoising effect becomes more pronounced, but 
 Non-Local Means Denoising is a more advanced technique that takes advantage of the redundancy present in images. It replaces each pixel value with a weighted average of similar pixels in the image, considering both spatial and intensity similarities.
 
 $$\hat{u}(i)=\frac{1}{C(i)}\sum_{j\in I}w(i,j)v(j)$$
+
 where $\hat{u}(i)$ is the denoised image, $v(j)$ is the noisy image, $I$ is the set of all pixels in the image, and $w(i,j)$ is the weight function reflecting the similarity between $i$ and $j$. The term $C(i)$ is a normalization term ensuring that the weights sum to one, defined as $C(i)=\sum_{j\in I}w(i,j)$.
 
 ```python
@@ -145,7 +147,9 @@ Optimal Parameters: Block Size $7$, Search Window Size $21$, and Filter Strength
 The Total Variation Filter is a denoising method that aims to preserve sharp edges while removing noise from the image. It minimizes the total variation norm, which is the L1 norm of the gradient of the image, while keeping the denoised image as close as possible to the original image.
 
 The Total Variation Filter aims to minimize the total variation (TV) norm, which measures the total amount of variation or gradient within an image. Mathematically, the goal is to find an image that is close to the noisy image but with a lower TV norm. The optimization problem can be described by:
+
 $$\min_u \left\{ \frac{1}{2} \int (u - v)^2 \, dx + \lambda \int |\nabla u| \, dx \right\}$$
+
 Here, $u$ is the denoised image, $v$ is the noisy input image, $\lambda$ is a parameter that controls the trade-off between fidelity to the original image and smoothness of the output, and $|\nabla u|$ represents the magnitude of the gradient (TV norm) of the image $u$.
 
 ```python

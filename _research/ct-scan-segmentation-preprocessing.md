@@ -146,12 +146,12 @@ $$\min_u \left\{ \frac{1}{2} \int (u - v)^2 \, dx + \lambda \int |\nabla u| \, d
 
 The goal is to find a clean image $u$ from the noisy input image $v$.
 
-The parameter $\lambda$ controls how much we want to keep the clean image $u$ close to the original noisy image $v$ versus how much we want to smooth out variation in $u$. The term $|\nabla u|$ measures the total amount of variation or changes in the clean image $u$.
+The parameter \\(\lambda\\) controls how much we want to keep the clean image \\(u\\) close to the original noisy image \\(v\\) versus how much we want to smooth out variation in \\(u\\). The term \\(|\nabla u|\\) measures the total amount of variation or changes in the clean image \\(u\\).
 
 The objective is to minimize the sum of two parts:
 
-1. the difference between the clean image $u$ and the noisy input $v$
-2. the total variation $|\nabla u|$ multiplied by $\lambda$. This means we want to find a clean image $u$ that stays close to the noisy input $v$, while also reducing the overall variation or changes in $u$, with $\lambda$ determining how much emphasis to place on each part.
+1. The difference between the clean image $u$ and the noisy input $v$
+2. The total variation \\(|\nabla u|\\) multiplied by \\(\lambda\\). This means we want to find a clean image \\(u\\) that stays close to the noisy input \\(v\\), while also reducing the overall variation or changes in \\(u\\), with \\(\lambda\\) determining how much emphasis to place on each part.
 
 ```python
 from skimage.restoration import denoise_tv_chambolle

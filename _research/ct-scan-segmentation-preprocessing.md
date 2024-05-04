@@ -144,7 +144,14 @@ The Total Variation Filter aims to minimize the total variation (TV) norm, which
 
 $$\min_u \left\{ \frac{1}{2} \int (u - v)^2 \, dx + \lambda \int |\nabla u| \, dx \right\}$$
 
-Here, $u$ is the denoised image, $v$ is the noisy input image, $\lambda$ is a parameter that controls the trade-off between fidelity to the original image and smoothness of the output, and $|\nabla u|$ represents the magnitude of the gradient (TV norm) of the image $u$.
+The goal is to find a clean image $u$ from the noisy input image $v$.
+
+The parameter $\lambda$ controls how much we want to keep the clean image $u$ close to the original noisy image $v$ versus how much we want to smooth out variation in $u$. The term $|\nabla u|$ measures the total amount of variation or changes in the clean image $u$.
+
+The objective is to minimize the sum of two parts:
+
+1. the difference between the clean image $u$ and the noisy input $v$
+2. the total variation $|\nabla u|$ multiplied by $\lambda$. This means we want to find a clean image $u$ that stays close to the noisy input $v$, while also reducing the overall variation or changes in $u$, with $\lambda$ determining how much emphasis to place on each part.
 
 ```python
 from skimage.restoration import denoise_tv_chambolle
@@ -475,7 +482,7 @@ $$G_x = \frac{\partial I_{smooth}}{\partial x}, \quad G_y = \frac{\partial I_{sm
 
 $$G = \sqrt{G_x^2 + G_y^2}, \quad \theta = \arctan\left(\frac{G_y}{G_x}\right)$$
 
-$$I_{thin} = \text{non_max_suppression}(G, \theta)$$
+$$I_{thin} = \text{non\_max\_suppression}(G, \theta)$$
 
 4. **Double thresholding**: Two threshold values, $T_{low}$ and $T_{high}$, are used to classify the remaining edge pixels into strong, weak, and non-edge pixels. Pixels with gradient magnitudes above $T_{high}$ are considered strong edges, while pixels with gradient magnitudes between $T_{low}$ and $T_{high}$ are considered weak edges.
 

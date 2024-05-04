@@ -203,9 +203,9 @@ Optimal Parameters: Sigma Color $0.1$ and Sigma Spatial $15$.
 
 The Wavelet Denoising Filter relies on the wavelet representation of the image. Noise is typically represented by small values in the wavelet domain, which can be set to zero or thresholded to remove the noise while preserving the important features of the image.
 
-$$\hat{u} = \sum_{\lambda} \hat{c}_{\lambda} \psi_{\lambda}$$
+$$\hat{u} = \sum_{\lambda} \hat{c}_{\lambda} {\psi}_{\lambda}$$
 
-where $\hat{c}_{\lambda}$ are the thresholded wavelet coefficients, $\psi_{\lambda}$ are the wavelet basis functions, and $\lambda$ indexes the different coefficients in the wavelet transform. The coefficients are obtained by:
+where $\hat{c}_{\lambda}$ are the thresholded wavelet coefficients, ${\psi}_{\lambda}$ are the wavelet basis functions, and $\lambda$ indexes the different coefficients in the wavelet transform. The coefficients are obtained by:
 
 $$c_{\lambda} = \langle v, \psi_{\lambda} \rangle$$
 

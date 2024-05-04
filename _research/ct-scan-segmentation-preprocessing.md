@@ -483,6 +483,7 @@ $$G_x = \frac{\partial I_{smooth}}{\partial x}, \quad G_y = \frac{\partial I_{sm
 $$G = \sqrt{G_x^2 + G_y^2}, \quad \theta = \arctan\left(\frac{G_y}{G_x}\right)$$
 
 $$I_{thin} = \text{non\_max\_suppression}(G, \theta)$$
+$$I_{thin} = \text{non\_max\_suppression}(G, \theta)$$
 
 4. **Double thresholding**: Two threshold values, $T_{low}$ and $T_{high}$, are used to classify the remaining edge pixels into strong, weak, and non-edge pixels. Pixels with gradient magnitudes above $T_{high}$ are considered strong edges, while pixels with gradient magnitudes between $T_{low}$ and $T_{high}$ are considered weak edges.
 

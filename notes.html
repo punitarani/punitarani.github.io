@@ -1,0 +1,87 @@
+---
+layout: default
+title: Notes
+permalink: notes
+---
+
+<style>
+  .notes-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .notes-list li {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .notes-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .notes-list h2 {
+    margin-top: 0;
+  }
+
+  .notes-list .post-meta {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+</style>
+
+<div class="notes">
+  <h1 class="page-heading">{{ page.title }}</h1>
+
+  <ul class="notes-list">
+    {% for note in site.notes %}
+    <li>
+      <h2><a href="{{ note.url }}">{{ note.title }}</a></h2>
+      <p class="post-meta">{{ note.date | date: "%b %-d, %Y" }}</p>
+      <p>{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
+      <a href="{{ note.url }}" class="read-more">Read More &raquo;</a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% if paginator.total_pages > 1 %}
+  <div class="pager">
+    <ul class="pagination">
+      {% if paginator.previous_page %}
+      <li>
+        <a
+          href="{{ paginator.previous_page_path | relative_url }}"
+          class="previous-page"
+        >
+          &laquo; Prev
+        </a>
+      </li>
+      {% endif %} {% for page in (1..paginator.total_pages) %} {% if page ==
+      paginator.page %}
+      <li class="active">{{ page }}</li>
+      {% elsif page == 1 %}
+      <li><a href="{{ '/notes' | relative_url }}">{{ page }}</a></li>
+      {% else %}
+      <li>
+        <a
+          href="{{ site.paginate_path | relative_url | replace: ':num', page }}"
+          >{{ page }}</a
+        >
+      </li>
+      {% endif %} {% endfor %} {% if paginator.next_page %}
+      <li>
+        <a
+          href="{{ paginator.next_page_path | relative_url }}"
+          class="next-page"
+        >
+          Next &raquo;
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
